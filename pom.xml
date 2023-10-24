@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ExtractData</groupId>
+  <artifactId>ExtractData</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  <maven.compiler.target>8</maven.compiler.target>
+  <maven.compiler.source>8</maven.compiler.source>
+  </properties>
+<dependencies>
+    <dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.28</version> <!-- Verifique a versão mais recente no site do PDFBox -->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.2</version> <!-- Use a versão mais recente disponível -->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.2</version> <!-- Use a versão mais recente disponível -->
+		</dependency>
+</dependencies>
+<build>
+    <finalName>extract-planilha</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>
+                <source>8</source>
+                <target>8</target>
+                <archive>
+                    <manifest>
+                        <mainClass>br.com.pgc.main.TesteMetodos</mainClass>
+                    </manifest>
+                </archive>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <appendAssemblyId>false</appendAssemblyId>
+                <finalName>${finalName}</finalName>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>br.com.pgc.main.TesteMetodos</mainClass>
+                    </manifest>
+                </archive>
+                <finalName>${finalName}</finalName>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+</project>
